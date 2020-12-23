@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <title>Todo app</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  <div class="container light">
+    <img src="./images/bg-desktop-dark.jpg" alt="background-image" id="bkg-img">
+    <div class="app-container">
+      <div class="title">
+        <h3>TO DO</h3>
+        <img src="./images/icon-sun.svg" alt="sun-toggle">
+      </div>
+      <div class="add-item">
+        <span class="check"></span>
+        <input type="text" name="add" id="add" placeholder="Add new item...">
+      </div>
+      <div class="list-container">
+        <ul class="list">
+          <li><span class="check"></span>Go shopping</li>
+          <li><span class="check"></span>Read a book</li>
+          <li><span class="check"></span>Cook dinner</li>
+          <li><span class="check"></span>Play music</li>
+          <li><span class="check"></span>Visit family</li>
+        </ul>
+        <div class="actions">
+          <p class="total-items">
+            5 items left
+          </p>
+          <ul class="select">
+            <li id="all">All</li>
+            <li id="completed">Completed</li>
+          </ul>
+          <p class="clear">Clear completed</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
