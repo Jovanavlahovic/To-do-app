@@ -1,4 +1,7 @@
+
 window.onload = function() {
+    //Displays the number of list elements at the bottom of the app
+    updateNumbOfItems();
 
     // Theme is changed when clicked on sun/moon img in header
     let toggleThemeBtn = document.getElementById("toggle-theme-btn");
@@ -28,13 +31,47 @@ window.onload = function() {
         if(e.key == 'Enter'){
             let itemText: string = addItemInput.value;
             let listItem = document.createElement('LI');
+
+            //creates a span needed for a check button
             let span = document.createElement('SPAN');
-            span.setAttribute('class', 'check');
+            span.setAttribute("class", "check");
+            
+            //Creates an li element and appends it to the list
             listItem.appendChild(span);
             listItem.append(itemText);
             list.appendChild(listItem);
+
+            //changes the displayed count of list items
+            updateNumbOfItems();
         }
     })
 
+
+}
+
+function deleteItem(deleteSpanItem: HTMLSpanElement): void{
+  let itemToDelete = deleteSpanItem.parentElement;
+  let list = itemToDelete.parentElement;
+  list.removeChild(itemToDelete);
+
+  updateNumbOfItems();
+}
+
+
+//changes the displayed count of list items
+function updateNumbOfItems():void{
+    let numbOfItems: HTMLParagraphElement = document.querySelector(
+      ".total-items");
+    let listLength: number = document.querySelector(".list").children.length;
+    numbOfItems.innerText = `${listLength} items left`;
+}
+
+function markAsCompleted(checkCircle: HTMLSpanElement): void{
+     let itemCompleted = checkCircle.parentElement;
+     itemCompleted.setAttribute('class', 'completed');
+
+      let numbOfItems: HTMLParagraphElement = document.querySelector(".total-items");
+      let listLength: number = document.querySelector(".list").children.length -1;
+      numbOfItems.innerText = `${listLength} items left`;
 }
 

@@ -82,9 +82,51 @@ ul {
 
 .list li {
   padding: 0.7em;
+  width: 100%;
+}
+.list li:before, .list li:after {
+  content: "";
+  display: table;
+}
+.list li:after {
+  clear: both;
 }
 .list li:last-child {
   margin-bottom: 0;
+}
+.list li span.cross {
+  float: right;
+  margin-right: 0.3em;
+  margin-top: 0.2em;
+  display: none;
+  height: 20px;
+}
+.list li:hover {
+  font-weight: 700;
+  cursor: pointer;
+}
+.list li:hover span.cross {
+  display: unset;
+}
+.list li:hover span.check {
+  border: 1.5px solid #4d5066;
+}
+.list li .check {
+  text-align: center;
+}
+.list li .check img {
+  width: 50%;
+  padding-top: 25%;
+  display: none;
+}
+.list .completed {
+  text-decoration: line-through;
+}
+.list .completed .check {
+  background-image: linear-gradient(#5CDEFF, #C058F3);
+}
+.list .completed .check img {
+  display: inline-block;
 }
 
 .actions {
@@ -131,6 +173,9 @@ ul {
 .dark .list li {
   border-bottom: 1px solid #777a92;
 }
+.dark .completed {
+  color: #777a92;
+}
 .dark .actions {
   color: #777a92;
 }
@@ -153,6 +198,9 @@ ul {
 }
 .light .list li {
   border-bottom: 1px solid #e4e5f1;
+}
+.light .completed {
+  color: #9394a5;
 }
 .light input {
   border: none;
