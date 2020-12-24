@@ -4,22 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  <title>Todo app</title>
   <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./css/style.css">
+  <script src="js/index.js"></script>
+  <title>Todo app</title>
 </head>
 <body>
-  <div class="container light">
-    <img src="./images/bg-desktop-dark.jpg" alt="background-image" id="bkg-img">
+  <div id="container" class="light">
+    <img src="./images/bg-desktop-dark.jpg" alt="background-image" id="bkg-img" >
     <div class="app-container">
       <div class="title">
         <h3>TO DO</h3>
-        <img src="./images/icon-sun.svg" alt="sun-toggle">
+        <img src="./images/icon-moon.svg" alt="theme-dark" name="theme-dark" id="toggle-theme-btn">
       </div>
       <div class="add-item">
         <span class="check"></span>
-        <input type="text" name="add" id="add" placeholder="Add new item...">
+        <input type="text" name="add" id="add" placeholder="Add new item..." >
       </div>
       <div class="list-container">
         <ul class="list">
