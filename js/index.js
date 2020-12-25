@@ -24,15 +24,72 @@ window.onload = function () {
         if (e.key == 'Enter') {
             var itemText = addItemInput.value;
             var listItem = document.createElement('LI');
-            //creates a span needed for a check button
-            var span = document.createElement('SPAN');
-            span.setAttribute("class", "check");
+            //creates a span needed for check button
+            var checkSpan = document.createElement('SPAN');
+            checkSpan.setAttribute("class", "check");
+            var checkImg = document.createElement("img");
+            checkImg.setAttribute("src", "./images/icon-check.svg");
+            checkImg.setAttribute("alt", "check");
+            checkSpan.appendChild(checkImg);
+            //creates a span needed for delete button
+            var deleteSpan = document.createElement('span');
+            deleteSpan.setAttribute('class', "cross");
+            var crossImg = document.createElement("img");
+            crossImg.setAttribute("src", "./images/icon-cross.svg");
+            crossImg.setAttribute("alt", "cross");
+            deleteSpan.appendChild(crossImg);
             //Creates an li element and appends it to the list
-            listItem.appendChild(span);
+            listItem.append(checkSpan);
             listItem.append(itemText);
+            listItem.appendChild(deleteSpan);
             list.appendChild(listItem);
             //changes the displayed count of list items
             updateNumbOfItems();
+            //clears text from input field
+            addItemInput.value = '';
+        }
+    });
+    list.addEventListener('click', function (e) {
+        if (e.target instanceof Element) {
+            //Marks selected list element as completed
+            if (e.target.classList.contains('check')) {
+                markAsCompleted(e.target);
+            }
+            //Deletes selected list element
+            if (e.target.getAttribute('alt') == 'cross') {
+                var li = e.target.parentElement;
+                deleteItem(li);
+            }
+        }
+    });
+    var allListItems = document.querySelectorAll('ul.list li');
+    var listItems = Array.prototype.slice.call(allListItems);
+    //Shows only 'completed' items in a list
+    document.querySelector('#show-completed').addEventListener('click', function (e) {
+        for (var _i = 0, listItems_1 = listItems; _i < listItems_1.length; _i++) {
+            var li = listItems_1[_i];
+            if (li.classList == 'completed') {
+                li.classList.add('show');
+            }
+            else {
+                li.classList.add('hide');
+            }
+        }
+    });
+    //Shows all items in a list
+    document.getElementById('all').addEventListener('click', function (e) {
+        for (var _i = 0, listItems_2 = listItems; _i < listItems_2.length; _i++) {
+            var li = listItems_2[_i];
+            li.classList.remove('hide');
+        }
+    });
+    //Removes all 'completed' items in a list
+    document.querySelector('.clear').addEventListener('click', function (e) {
+        var completedListItems = document.querySelectorAll("li.completed");
+        var arrayOfItems = Array.prototype.slice.call(completedListItems);
+        for (var _i = 0, arrayOfItems_1 = arrayOfItems; _i < arrayOfItems_1.length; _i++) {
+            var li = arrayOfItems_1[_i];
+            list.removeChild(li);
         }
     });
 };
@@ -51,8 +108,9 @@ function updateNumbOfItems() {
 function markAsCompleted(checkCircle) {
     var itemCompleted = checkCircle.parentElement;
     itemCompleted.setAttribute('class', 'completed');
+    //Updated the number of uncompleted items on the list  
     var numbOfItems = document.querySelector(".total-items");
-    var listLength = document.querySelector(".list").children.length - 1;
+    var listLength = document.querySelector(".list").children.length - document.querySelectorAll('.completed').length;
     numbOfItems.innerText = listLength + " items left";
 }
 //# sourceMappingURL=index.js.map

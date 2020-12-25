@@ -119,6 +119,12 @@ ul {
   padding-top: 25%;
   display: none;
 }
+.list .hide {
+  display: none;
+}
+.list .show {
+  display: inline-block;
+}
 .list .completed {
   text-decoration: line-through;
 }
