@@ -202,6 +202,9 @@ ul {
 .light .add-item, .light .list-container, .light .actions, .light input {
   background-color: #fff;
 }
+.light .list-container {
+  box-shadow: 15px 15px 10px #cacde8;
+}
 .light .list li {
   border-bottom: 1px solid #e4e5f1;
 }
@@ -221,18 +224,25 @@ ul {
   border: 1px solid #e4e5f1;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 780px) {
   .app-container {
-    width: 60%;
+    width: 70%;
     top: 20%;
-    left: 20%;
+    left: 15%;
   }
 }
-@media only screen and (max-width: 425px) {
+@media only screen and (max-width: 540px) {
   .app-container {
     width: 80%;
     top: 20%;
     left: 10%;
+  }
+
+  .actions .total-items {
+    display: none;
+  }
+  .actions ul, .actions p {
+    width: 50%;
   }
 }
 

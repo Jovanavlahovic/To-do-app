@@ -64,7 +64,7 @@ window.onload = function() {
 
     list.addEventListener('click', function(e){
       if(e.target instanceof Element){
-          
+
           //Marks selected list element as completed
           if(e.target.classList.contains('check')){
               markAsCompleted(e.target as HTMLSpanElement);
@@ -109,7 +109,7 @@ window.onload = function() {
         }
     })
 
-
+     
 }
 
 function deleteItem(deleteSpanItem: HTMLSpanElement): void{
