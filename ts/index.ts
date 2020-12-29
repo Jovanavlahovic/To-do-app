@@ -1,5 +1,4 @@
 
-window.onload = function() {
     //Displays the number of list elements at the bottom of the app
     updateNumbOfItems();
 
@@ -62,20 +61,27 @@ window.onload = function() {
         }
     })
 
+    //Marks selected list element as completed
     list.addEventListener('click', function(e){
+        e.stopPropagation();
       if(e.target instanceof Element){
+          if (e.target.classList.contains("check"))
+            markAsCompleted(e.target as HTMLSpanElement);
+          else if (e.target.getAttribute("alt") === "check") {
+              markAsCompleted(e.target.parentElement)
+          }
+        } 
+         return false;
+    })
 
-          //Marks selected list element as completed
-          if(e.target.classList.contains('check')){
-              markAsCompleted(e.target as HTMLSpanElement);
-          }
-          
-          //Deletes selected list element
-          if(e.target.getAttribute('alt') == 'cross'){
-              let li = e.target.parentElement;
-              deleteItem(li);
-          }
-      }
+    //deletes selected list element
+    list.addEventListener('click', (e) => {
+        e.stopPropagation();
+         if(e.target instanceof Element){
+            if(e.target.getAttribute('alt') === 'cross'){
+                deleteItem(e.target.parentElement);
+            }
+         } return false;
     })
     
     let allListItems = document.querySelectorAll('ul.list li');
@@ -109,8 +115,6 @@ window.onload = function() {
         }
     })
 
-     
-}
 
 function deleteItem(deleteSpanItem: HTMLSpanElement): void{
   let itemToDelete = deleteSpanItem.parentElement;
@@ -123,19 +127,20 @@ function deleteItem(deleteSpanItem: HTMLSpanElement): void{
 
 //changes the displayed count of list items
 function updateNumbOfItems():void{
-    let numbOfItems: HTMLParagraphElement = document.querySelector(
-      ".total-items");
-    let listLength: number = document.querySelector(".list").children.length;
-    numbOfItems.innerText = `${listLength} items left`;
+    let numbOfItems: HTMLParagraphElement = document.querySelector(".total-items");
+      let listLength: number = document.querySelector(".list").children.length - document.querySelectorAll('.completed').length;
+      numbOfItems.innerText = `${listLength} items left`;
 }
 
 function markAsCompleted(checkCircle: HTMLSpanElement): void{
      let itemCompleted = checkCircle.parentElement;
-     itemCompleted.setAttribute('class', 'completed');
+     if(!itemCompleted.classList.contains('completed')){
+         itemCompleted.setAttribute("class", "completed");
+     }
+     else if(itemCompleted.classList.contains('completed')){
+         itemCompleted.classList.remove('completed');
+     }
 
-      //Updated the number of uncompleted items on the list  
-      let numbOfItems: HTMLParagraphElement = document.querySelector(".total-items");
-      let listLength: number = document.querySelector(".list").children.length - document.querySelectorAll('.completed').length;
-      numbOfItems.innerText = `${listLength} items left`;
-}
+     updateNumbOfItems();
+    }
 
