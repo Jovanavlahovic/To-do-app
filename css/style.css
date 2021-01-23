@@ -80,6 +80,9 @@ ul {
   list-style-type: none;
 }
 
+.list .over {
+  border: 3px solid #777a92;
+}
 .list li {
   padding: 0.7em;
   width: 100%;
@@ -161,6 +164,11 @@ ul {
 .add-item, .list-container {
   border-radius: 0.3em;
   border: 1px solid #e4e5f1;
+}
+
+.info {
+  text-align: center;
+  margin: 1.5rem auto 0;
 }
 
 .dark {

@@ -77,6 +77,10 @@ ul{
 
 .list{
     
+    .over{
+        border: 3px solid $dark-grayish-blue-dt;
+    }
+
     li{
         padding: 0.70em;
         width: 100%;
@@ -172,7 +176,10 @@ ul{
     border: 1px solid $very-light-grayish-blue;
 }
 
-
+.info{
+    text-align: center;
+    margin: 1.5rem auto 0;
+}
 
 
 //----------------------DARK THEME--------------------
